@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AEC38541-EB6F-4269-916D-563C720030BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRUDSampleAppEntity</RootNamespace>
+    <AssemblyName>CRUDSampleAppEntity</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CRUDSampleAppDAL\CRUDSampleApp.cs">
+      <Link>CRUDSampleApp.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUDSampleApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\CRUDSampleAppDAL\tblCatalog.cs">
+      <Link>tblCatalog.cs</Link>
+      <DependentUpon>CRUDSampleApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\CRUDSampleAppDAL\tblCatalogType.cs">
+      <Link>tblCatalogType.cs</Link>
+      <DependentUpon>CRUDSampleApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\CRUDSampleAppDAL\tblContactDetail.cs">
+      <Link>tblContactDetail.cs</Link>
+      <DependentUpon>CRUDSampleApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\CRUDSampleAppDAL\tblDetail.cs">
+      <Link>tblDetail.cs</Link>
+      <DependentUpon>CRUDSampleApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\CRUDSampleAppDAL\tblStudent.cs">
+      <Link>tblStudent.cs</Link>
+      <DependentUpon>CRUDSampleApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\ContractDetail.cs" />
+    <Compile Include="Classes\EntityNames.cs" />
+    <Compile Include="Classes\EnumData.cs" />
+    <Compile Include="Grid\Filter.cs" />
+    <Compile Include="Grid\GridModelBinder.cs" />
+    <Compile Include="Grid\GridSettings.cs" />
+    <Compile Include="Grid\Rule.cs" />
+    <Compile Include="Helper\LinqExtensions.cs" />
+    <Compile Include="Helper\StringEnum.cs" />
+    <Compile Include="Helper\WhereOperation.cs" />
+    <Compile Include="Metadata\tblCatalogMetaData.cs" />
+    <Compile Include="Metadata\tblContactDetailMetaData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Metadata\tblDetailMetaData.cs" />
+    <Compile Include="Metadata\tblStudentMetaData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CRUDSampleAppDAL\CRUDSampleApp.tt">
+      <Link>CRUDSampleApp.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CRUDSampleApp.cs</LastGenOutput>
+      <CustomToolNamespace>CRUDSampleAppEntity</CustomToolNamespace>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

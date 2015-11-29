@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CRUDSampleModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CRUDSampleModelStoreContainer">
+          <EntitySet Name="tblCatalog" EntityType="CRUDSampleModel.Store.tblCatalog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCatalogType" EntityType="CRUDSampleModel.Store.tblCatalogType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblContactDetail" EntityType="CRUDSampleModel.Store.tblContactDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDetail" EntityType="CRUDSampleModel.Store.tblDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblStudent" EntityType="CRUDSampleModel.Store.tblStudent" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblCatalog_tblCatalogType" Association="CRUDSampleModel.Store.FK_tblCatalog_tblCatalogType">
+            <End Role="tblCatalogType" EntitySet="tblCatalogType" />
+            <End Role="tblCatalog" EntitySet="tblCatalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblContactDetail" Association="CRUDSampleModel.Store.FK_tblStudent_tblContactDetail">
+            <End Role="tblContactDetail" EntitySet="tblContactDetail" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCatalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CatalogName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Barcode" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCatalogType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblContactDetail">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContactDetail" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="ConfirmEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCatalog_tblCatalogType">
+          <End Role="tblCatalogType" Type="CRUDSampleModel.Store.tblCatalogType" Multiplicity="1" />
+          <End Role="tblCatalog" Type="CRUDSampleModel.Store.tblCatalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatalogType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="tblCatalog">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblContactDetail">
+          <End Role="tblContactDetail" Type="CRUDSampleModel.Store.tblContactDetail" Multiplicity="1" />
+          <End Role="tblStudent" Type="CRUDSampleModel.Store.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContactDetail">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CRUDSampleModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CRUDSampleEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tblContactDetails" EntityType="CRUDSampleModel.tblContactDetail" />
+          <EntitySet Name="tblStudents" EntityType="CRUDSampleModel.tblStudent" />
+          <AssociationSet Name="FK_tblStudent_tblContactDetail" Association="CRUDSampleModel.FK_tblStudent_tblContactDetail">
+            <End Role="tblContactDetail" EntitySet="tblContactDetails" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <EntitySet Name="tblCatalogs" EntityType="CRUDSampleModel.tblCatalog" />
+          <EntitySet Name="tblCatalogTypes" EntityType="CRUDSampleModel.tblCatalogType" />
+          <AssociationSet Name="FK_tblCatalog_tblCatalogType" Association="CRUDSampleModel.FK_tblCatalog_tblCatalogType">
+            <End Role="tblCatalogType" EntitySet="tblCatalogTypes" />
+            <End Role="tblCatalog" EntitySet="tblCatalogs" />
+          </AssociationSet>
+          <EntitySet Name="tblDetails" EntityType="CRUDSampleModel.tblDetail" />
+        </EntityContainer>
+        <EntityType Name="tblContactDetail">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Type="Int32" Name="ContactId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ContactDetail" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateDate" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
+          <NavigationProperty Name="tblStudents" Relationship="CRUDSampleModel.FK_tblStudent_tblContactDetail" FromRole="tblContactDetail" ToRole="tblStudent" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Type="Int32" Name="StudentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ContactId" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblContactDetail" Relationship="CRUDSampleModel.FK_tblStudent_tblContactDetail" FromRole="tblStudent" ToRole="tblContactDetail" />
+        </EntityType>
+        <Association Name="FK_tblStudent_tblContactDetail">
+          <End Type="CRUDSampleModel.tblContactDetail" Role="tblContactDetail" Multiplicity="1" />
+          <End Type="CRUDSampleModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContactDetail">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCatalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CatalogName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Barcode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TypeId" Nullable="false" />
+          <NavigationProperty Name="tblCatalogType" Relationship="CRUDSampleModel.FK_tblCatalog_tblCatalogType" FromRole="tblCatalog" ToRole="tblCatalogType" />
+        </EntityType>
+        <EntityType Name="tblCatalogType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Type="Int32" Name="TypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TypeName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblCatalogs" Relationship="CRUDSampleModel.FK_tblCatalog_tblCatalogType" FromRole="tblCatalogType" ToRole="tblCatalog" />
+        </EntityType>
+        <Association Name="FK_tblCatalog_tblCatalogType">
+          <End Type="CRUDSampleModel.tblCatalogType" Role="tblCatalogType" Multiplicity="1" />
+          <End Type="CRUDSampleModel.tblCatalog" Role="tblCatalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatalogType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="tblCatalog">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ConfirmEmail" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobileNo" MaxLength="12" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CRUDSampleModelStoreContainer" CdmEntityContainer="CRUDSampleEntities">
+          <EntitySetMapping Name="tblContactDetails">
+            <EntityTypeMapping TypeName="CRUDSampleModel.tblContactDetail">
+              <MappingFragment StoreEntitySet="tblContactDetail">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ContactDetail" ColumnName="ContactDetail" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudents">
+            <EntityTypeMapping TypeName="CRUDSampleModel.tblStudent">
+              <MappingFragment StoreEntitySet="tblStudent">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCatalogs">
+            <EntityTypeMapping TypeName="CRUDSampleModel.tblCatalog">
+              <MappingFragment StoreEntitySet="tblCatalog">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="CatalogName" ColumnName="CatalogName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCatalogTypes">
+            <EntityTypeMapping TypeName="CRUDSampleModel.tblCatalogType">
+              <MappingFragment StoreEntitySet="tblCatalogType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDetails">
+            <EntityTypeMapping TypeName="CRUDSampleModel.tblDetail">
+              <MappingFragment StoreEntitySet="tblDetail">
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="ConfirmEmail" ColumnName="ConfirmEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

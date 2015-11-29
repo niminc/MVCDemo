@@ -1,0 +1,83 @@
+﻿@model CRUDSampleApp.tblDetail
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4>Create Detail</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("", "", FormMethod.Post, new { id = "Detail-form" }))
+            {
+                @Html.ValidationSummary(true)
+                   
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.ValidationMessageFor(model => model.Id)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(model => model.ConfirmEmail, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.ConfirmEmail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ConfirmEmail)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(model => model.Website, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Website, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Website)
+                    </div>
+                </div>     
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(model => model.MobileNo, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MobileNo)
+                    </div>
+                </div>
+                           
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input id="btnCreateDetail" type="button" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $("#btnCreateDetail").on("click", function () {
+        $.validator.unobtrusive.parse($("#studentform"));
+        if ($('#Detail-form').valid()) {
+            $.post(
+                '@Url.Action("Manage", "Detail")',
+                $('#Detail-form').serialize(),
+                function (data) {
+                    $("#CreateModal").modal('hide');
+                    ReloadTable();
+                });
+        }
+    });
+</script>

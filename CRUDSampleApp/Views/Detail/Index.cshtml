@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CRUDSampleApp.tblDetail>
+
+<p>
+    <button id="CreateNew" class="btn btn-primary" onclick="Manage(0);">Create New</button>
+</p>
+<div id="DetailList">
+    @Html.Partial("_Index")
+</div>
+
+<div class="modal fade" id="CreateModal" role="dialog">
+</div>
+<script type="text/javascript">
+    function ReloadTable() {
+        $("#DetailList").load('@Url.Content("~/Detail/Index")');
+    }
+
+    function Manage(id) {
+        $("#CreateModal").load('@Url.Content("~/Detail/Manage?Id=")' + id).modal('show');
+    }
+
+    function DeleteDetail(id) {
+        $.post(
+            '@Url.Action("Delete", "Detail")',
+            { id: id },
+            function (data) {
+                ReloadTable();
+            });
+    }
+</script>
+

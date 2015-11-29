@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2fcd6b38f7984bdcab03ced8ce8b630d" Name="Diagram1">
+        <EntityTypeShape EntityType="CRUDSampleModel.tblContactDetail" Width="1.5" PointX="5.3027693188296485" PointY="10.112215419352156" />
+        <EntityTypeShape EntityType="CRUDSampleModel.tblStudent" Width="1.5" PointX="5.2270832086108081" PointY="24.631224673535314" />
+        <AssociationConnector Association="CRUDSampleModel.FK_tblStudent_tblContactDetail" />
+        <EntityTypeShape EntityType="CRUDSampleModel.tblCatalog" Width="1.5" PointX="11.580892782463176" PointY="17.451356165786905" />
+        <EntityTypeShape EntityType="CRUDSampleModel.tblCatalogType" Width="1.5" PointX="7.6112723721243789" PointY="16.704077907234467" />
+        <AssociationConnector Association="CRUDSampleModel.FK_tblCatalog_tblCatalogType" />
+        <EntityTypeShape EntityType="CRUDSampleModel.tblDetail" Width="1.5" PointX="2.6184365910563789" PointY="15.336581594933096" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

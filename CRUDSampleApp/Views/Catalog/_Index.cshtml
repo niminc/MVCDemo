@@ -1,0 +1,29 @@
+﻿@model IEnumerable<CRUDSampleAppEntity.tblCatalog>
+
+
+<table class="table table-bordered table-condensed" id="CatalogList">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CatalogName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatalogName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Barcode)
+            </td>
+            <td>
+                <input type="button" value="Edit" class="btn btn-primary" onclick="Manage('@item.Id')" />
+            </td>
+        </tr>
+    }
+
+</table>

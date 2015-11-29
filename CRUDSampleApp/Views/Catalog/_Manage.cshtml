@@ -1,0 +1,79 @@
+﻿@model CRUDSampleAppEntity.tblCatalog
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4>Create Catalog</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("", "", FormMethod.Post, new { id = "Catalog-form" }))
+            {
+                @Html.ValidationSummary(true)
+                   
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.ValidationMessageFor(model => model.Id)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(model => model.CatalogName, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.CatalogName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CatalogName)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(model => model.Barcode, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Barcode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Barcode)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        @Html.LabelFor(model => model.TypeId, new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.TypeId, new SelectList(ViewBag.Types as System.Collections.IEnumerable, "TypeId", "TypeName"), "----Select-----", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TypeId)
+                    </div>
+                </div>     
+           
+                
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input id="btnCreateCatalog" type="button" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $("#btnCreateCatalog").on("click", function () {
+        $.validator.unobtrusive.parse($("#studentform"));
+        if ($('#Catalog-form').valid()) {
+            $.post(
+                '@Url.Action("Save", "Catalog")',
+                $('#Catalog-form').serialize(),
+                function (data) {
+                    $("#CreateModal").modal('hide');
+                    ReloadTable();
+                });
+        }
+    });
+</script>
+
+
