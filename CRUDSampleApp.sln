@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDSampleApp", "CRUDSampleApp\CRUDSampleApp.csproj", "{A2741571-0E34-4356-B81F-B8F54DA577CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDSampleAppDAL", "CRUDSampleAppDAL\CRUDSampleAppDAL.csproj", "{8E3943DC-F695-4A31-97A0-3C564904111F}"
@@ -10,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDSampleAppEntity", "CRUDSampleAppEntity\CRUDSampleAppEntity.csproj", "{AEC38541-EB6F-4269-916D-563C720030BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{84BE6032-C5F7-41FD-8A1C-0628053A52A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCApp", "..\..\..\mvc asp\MVCApp\MVCApp\MVCApp.csproj", "{9C880E4A-B3B7-4E2D-B103-BACEB4E7CFDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,10 @@ Global
 		{84BE6032-C5F7-41FD-8A1C-0628053A52A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BE6032-C5F7-41FD-8A1C-0628053A52A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BE6032-C5F7-41FD-8A1C-0628053A52A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C880E4A-B3B7-4E2D-B103-BACEB4E7CFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C880E4A-B3B7-4E2D-B103-BACEB4E7CFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C880E4A-B3B7-4E2D-B103-BACEB4E7CFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C880E4A-B3B7-4E2D-B103-BACEB4E7CFDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
